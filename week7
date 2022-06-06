@@ -1,0 +1,103 @@
+index.html:
+
+<html>
+<body>
+<script>
+function loadXML(){
+var xml = new XMLHttpRequest()
+xml.onreadystatechange = function(){
+ studDetails(this)
+    					
+};
+xml.open("GET", "newdata.xml", true)
+xml.send()
+}
+function studDetails(xml){
+var xmlDoc = xml.responseXML
+var data = ""
+var x = xmlDoc.getElementsByTagName("student")
+for(var i = 0; i < x.length; i++) {
+var name = x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue
+var rollno = x[i].getElementsByTagName("rollno")[0].childNodes[0].nodeValue
+var percentage = x[i].getElementsByTagName("percentage")[0].childNodes[0].nodeValue
+var gender = x[i].getElementsByTagName("gender")[0].childNodes[0].nodeValue
+if(document.getElementById("rollno").value == rollno)
+data += name + "<br/>" + rollno + "<br/>" + percentage + "<br/>" + gender + "<br/>"
+}
+if(data == "")
+ data = "No person found"
+document.getElementById("data").innerHTML = data
+}
+</script>
+<center>
+<input type = "text" id = "rollno" placeholder = "Enter your roll number"/><br/>
+<button type="button" onclick = "loadXML()" > Submit </button>
+<p id = "data">Hello</p>
+</center>
+</body>
+</html>
+
+
+data.xml:
+<CSE>
+<student>
+<name>Anoop</name>
+<rollno>501</rollno>
+<percentage>98</percentage>
+<gender>Male</gender>
+</student>
+<student>
+<name>Ankit</name>
+<rollno>502</rollno>
+<percentage>92</percentage>
+<gender>Male</gender>
+</student>
+<student>
+<name>Ayaz</name>
+<rollno>503</rollno>
+<percentage>90</percentage>
+<gender>Male</gender>
+</student>
+<student>
+<name>Alok</name>
+<rollno>504</rollno>
+<percentage>92</percentage>
+<gender>Male</gender>
+</student>
+<student>
+<name>Mohan</name>
+<rollno>505</rollno>
+<percentage>18</percentage>
+<gender>Male</gender>
+</student>
+<student>
+<name>Pandit</name>
+<rollno>506</rollno>
+<percentage>69</percentage>
+<gender>Male</gender>
+</student>
+<student>
+<name>Karan</name>
+<rollno>507</rollno>
+<percentage>48</percentage>
+<gender>Male</gender>
+</student>
+<student>
+<name>Adwik</name>
+<rollno>508</rollno>
+<percentage>100</percentage>
+<gender>Male</gender>
+</student>
+<student>
+<name>Lokesh</name>
+<rollno>509</rollno>
+<percentage>8</percentage>
+<gender>Male</gender>
+</student>
+<student>
+<name>Joker</name>
+<rollno>510</rollno>
+<percentage>39</percentage>
+<gender>Male</gender>
+</student>
+</CSE>
